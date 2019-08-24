@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+
+    </script>
+    <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="{% static 'library/css/style.css' %}">
+    <title>
+      会員ログイン
+    </title>
+  </head>
+  <body>
+    <h1 align='center'>会員ログイン</h1>
+    <div align="right"><a href="{% url 'slogin' %}">職員でログインする</a></div>
+
+    <br>
+    <hr>
+    <br>
+    <font size="5"><center>
+    {{ message }}
+    <br><br>
+
+        <form  action="{% url 'mmypage' %}" method="post" class="center">
+          {% csrf_token %}
+          <table class="color">
+          {{ form.as_table }}
+          </table>
+          <br>
+          <input type="submit" value="ログイン" class="size">
+
+        </form>
+
+      </center></font>
+        <br><br>
+
+
+  </body>
+</html>

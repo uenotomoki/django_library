@@ -1,0 +1,54 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+
+    </script>
+    <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'library/css/style.css' %}">
+    <title>
+      資料編集
+    </title>
+  </head>
+  <body>
+    <h1>資料編集</h1>
+        <h4 align='right'>
+          <div align="right"><a href="{% url 'smypage' %}">マイページへ</a></div>
+          <div align="right"><a href="{% url 'slogin' %}">ログアウト</a></div>
+        </h4>
+        <hr><br>
+<!--  ＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃-->
+    <font size="6">
+      <center>
+        資料を編集して下さい
+
+        <table border="1" align='center'  style='font-size: 20pt;'>
+          <tr>
+            <td>isbn番号</td>
+            <td>{{ form.docindex.isbn }}</td>
+          </tr>
+          <tr>
+            <td>入荷日</td>
+            <td>{{ form.arrival_day }}</td>
+          </tr>
+          <form action="{% url 'edit_doc' form.id %}" method="post" class="center">
+            {% csrf_token %}
+            {{ formindex.as_table }}
+
+            </table>
+            <input type="hidden" name="isbn" value="{{form.docindex.isbn }}">
+
+          <input type="submit" value="確認" class="size">
+          </form>
+
+
+
+
+          <button onClick="history.go(-1)">戻る</button>
+</center></font>
+
+<!--  ＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃-->
+  </body>
+</html>

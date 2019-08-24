@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+
+    </script>
+    <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'library/css/style.css' %}">
+
+    <title>
+      資料情報検索
+    </title>
+  </head>
+  <body>
+    <h1>資料情報検索画面</h1>
+    <br>
+
+      <div align="right"><a href="{% url 'smypage' %}">マイページへ</a></div>
+      <div align="right"><a href="{% url 'slogin' %}">ログアウト</a></div>
+  
+    <br><br>
+    <form action="cgi-bin/example.cgi" method="post">
+      <input type="search" name="search" placeholder="キーワードを入力">
+      <input type="submit" name="submit" value="資料検索">
+    </form><br>
+<br><br><br>
+
+<a href="#">資料登録</a>
+
+
+  </body>
+</html>

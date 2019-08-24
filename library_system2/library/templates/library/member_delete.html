@@ -1,0 +1,61 @@
+
+{% extends 'library/base.html' %}
+
+
+{% block TITLE_AREA %}
+会員退会確認画面
+{% endblock %}
+
+{% block BODY_AREA %}
+<h1 class="s60" align="center">会員退会確認画面</h1>
+<div align="right"><a href="{% url 'smypage' %}">マイページへ</a></div>
+<div align="right"><a href="{% url 'slogin' %}">ログアウト</a></div>
+
+<hr>
+
+<br><br>
+<table border=1>
+  <tr>
+    <td>会員ID</td>
+    <td>{{member.id}}</td>
+  </tr>
+  <tr>
+    <td>氏名</td>
+    <td>{{member.name}}</td>
+  </tr>
+  <tr>
+    <td>郵便番号</td>
+    <td>{{member.post_number}}</td>
+  </tr>
+  <tr>
+    <td>住所</td>
+    <td>{{member.address}}</td>
+  </tr>
+  <tr>
+    <td>電話番号</td>
+    <td>{{member.tel_number}}</td>
+  </tr>
+  <tr>
+    <td>E-mail</td>
+    <td>{{member.email}}</td>
+  </tr>
+  <tr>
+    <td>誕生日</td>
+    <td>{{member.birthday}}</td>
+  </tr>
+  <tr>
+    <td>入会日</td>
+    <td>{{member.entry_day}}</td>
+  </tr>
+</table>
+<br>
+<form class="s40" action="{% url 'member_delete' id %}" method="post">
+  {% csrf_token %}
+  <div align="center"><input class="s30" type="submit" name="" value="退会">
+  　<button class="s30" type="button" onclick="history.back()">戻る</button></div>
+</form>
+
+
+
+
+{% endblock %}

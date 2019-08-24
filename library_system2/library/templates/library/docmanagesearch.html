@@ -1,0 +1,11 @@
+{% extends 'library/docmanagebase.html' %}
+
+{% block BODY_AREA %}
+{% for no in plist %}
+{% if no == num %}
+{{no}}
+{% else %}
+<a href="{% url 'doc_listsearch' no %}?choices={{choices}}&find={{find}}" >{{ no }}</a>
+{% endif %}
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'library/base.html' %}
+
+{% block TITLE_AREA %}
+会員マイページ
+{% endblock %}
+{% block BODY_AREA %}
+
+    <h1 align="center">会員マイページ</h1>
+
+    <div align="right"><a href="{% url 'mlogin' %}">ログアウト</a></div>
+
+    <center>
+    {{user}}さん、こんにちは。
+    {{alert}}
+    </center>
+    <h2 align="center">機能一覧<hr></h2>
+    <br>
+    <table width="900"  height="400" class="color">
+      <tr>
+        <td><h1>会員</h1></td>
+        <td><h1>資料</h1></td>
+      </tr>
+    <!-- <h2 align="center"> -->
+    <tr>
+      <td><a href="{% url 'minfo' %}">会員情報の確認・変更</a></td>
+      <td><a href="{% url 'searchhome' 1 %}">検索する</a></td>
+    <tr>
+    <!-- </h2> -->
+
+    <!-- <h2 align="center"> -->
+    <tr>
+      <td><a href="{% url 'mresult1' 1 %}">履歴を見る</a></td>
+      <td><a href="{% url 'mlend' %}">借りる</a></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a href="{%url 'mreturn'%}">返却する</a></td>
+    </tr>
+    <!-- </h2> -->
+    </table>
+
+    <h2 align="center">
+
+    </h2>
+    <h2 align="center">
+
+    </h2>
+    <h2 align="center">
+
+    </h2>
+
+
+
+  <br><br><br>
+
+{% endblock %}

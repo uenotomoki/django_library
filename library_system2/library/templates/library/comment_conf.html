@@ -1,0 +1,40 @@
+
+{% extends 'library/base.html' %}
+
+
+{% block TITLE_AREA %}
+評価・コメント画面確認画面
+{% endblock %}
+
+{% block BODY_AREA %}
+<h1 class="s60" align="center">評価・コメント確認画面</h1>
+<div align="right"><a href="{% url 'mmypage' %}">マイページへ</a></div>
+<div align="right"><a href="{% url 'mlogin' %}">ログアウト</a></div>
+<hr>
+<br>
+<h2 class="s50" align="center">{{alert}}</h2>
+<h1 align='center'>評価・コメント</h1>
+<table border="1">
+  <tr>
+    <td>評価</td>
+    <td>{{evaluation}}</td>
+  </tr>
+  <tr>
+    <td>コメント</td>
+    <td>{{comment}}</td>
+  </tr>
+
+</table>
+<br>
+<center>
+<form class="s30" action="{% url 'comment_save' %}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="isbn" value="{{isbn}}">
+  <input type="hidden" name="comment" value="{{comment}}">
+  <input type="hidden" name="evaluation" value="{{evaluation}}">
+  <input type="submit" name="" value="投稿" class="s30">
+　<button class="s30" type="button" onclick="history.back()">戻る</button>
+</form>
+</center>
+
+{% endblock %}

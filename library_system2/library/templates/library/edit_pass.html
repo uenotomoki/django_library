@@ -1,0 +1,32 @@
+
+{% extends 'library/base.html' %}
+
+
+{% block TITLE_AREA %}
+パスワード変更画面
+{% endblock %}
+
+{% block BODY_AREA %}
+<h1 class="s60" align="center">パスワード変更画面</h1>
+<div align="right"><a href="{% url 'mmypage' %}">マイページへ</a></div>
+<div align="right"><a href="{% url 'mlogin' %}">ログアウト</a></div>
+<hr>
+<h2 class="s50" align="center">{{alert}}</h2>
+
+
+<br><br><br>
+<form  action="{% url 'editpass' %}" method="post" align="center">
+  {% csrf_token %}
+  <table align='center'class="color">
+  {{ form.as_table }}
+  </table>
+<br>
+  <center>
+  <input type="submit" name="" value="更新" class="s30">
+</form >
+
+　　　　<a href="{% url 'minfo' %}"><input type="submit" value="戻る" class="s30"></a>
+
+</center>
+
+{% endblock %}

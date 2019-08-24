@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+
+    </script>
+    <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'library/css/style.css' %}">
+    <title>
+      資料検索画面
+    </title>
+  </head>
+  <body>
+  <center>
+    <h1>資料検索画面</h1>
+  </center>
+  <div align="right"><a href="{% url 'mmypage' %}">マイページへ</a></div>
+  <div align="right"><a href="{% url 'mlogin' %}">ログアウト</a></div>
+
+        <hr><br>
+
+        <form action="{% url 'mdoc_listsearch' 1%}" method="get">
+          <center>
+        {% csrf_token %}
+        {{ form.choices }}{{ form.find }}
+        <input type="submit" value="検索" class="s30">
+  </form><br><br>
+{% if objectlist %}
+  <table border="1" align='center'  style='font-size: 15pt;'>
+    <tr>
+      <td>本タイトル</td>
+      <td>分類コード</td>
+      <td>著者</td>
+      <td>出版社</td>
+      <td>出版日</td>
+      <td>備考</td>
+      <td>詳細</td>
+    </tr>
+
+      {% for item in objectlist %}
+
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.type_code}}</td>
+        <td>{{ item.author }}</td>
+        <td>{{ item.publisher }}</td>
+        <td>{{ item.publication_day }}</td>
+        <td>{{ item.remarks }}</td>
+        <td>
+          <form class="s30" action="{% url 'mdoc_detail'%}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="isbn" value="{{item.isbn}}">
+
+            <input type="submit" value="詳細" class="s300">
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+        </table>
+
+  <br>
+<center>
+  <button onClick="history.go(-1)" class="size">戻る</button>
+</center><br>
+
+{%else%}
+  該当する資料は存在しません<br>
+{%endif%}
+{% for no in plist %}
+{% if no == num %}
+{{no}}
+{% else %}
+<a href="{% url 'mdoc_listsearch' no %}?choices={{choices}}&find={{find}}" >{{ no }}</a>
+{% endif %}
+{% endfor %}
+        </center></font>
+
+  </body>
+</html>

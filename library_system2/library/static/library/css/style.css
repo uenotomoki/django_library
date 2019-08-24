@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+body {
+	background-color: #eFe;
+	font-size: 30px;
+}
+
+
+
+.s50 {
+    font-size: 50px;
+
+}
+
+.s30 {
+  font-size: 30px;
+
+}
+
+.s40 {
+  font-size: 40px;
+
+}
+
+.s60 {
+  font-size: 60px;
+
+  }
+
+#id_id,#id_did,#id_mid,#id_ID,#id_type_code,#id_author,#id_publisher,#id_publication_day {
+  font-size: 30px;
+
+
+}
+
+#id_docindex,#id_arrival_day,#id_remarks,#id_choices,#id_find,#id_dname,#id_beforepass,#id_newpassword1,#id_newpassword2 {
+  font-size: 30px;
+
+
+}
+.right {
+  align:right;
+
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 30px;
+	background-color:#fff;
+
+}
+
+#id_name,#id_post_number,#id_address,#id_tel_number,#id_email,#id_birthday,#id_password {
+	font-size: 30px;
+
+}
+
+.color {
+	background-color: #eFe;
+}
+
+ul li {
+  list-style:none;
+
+}
+
+h1 {
+	text-align: center;
+}
+
+div {
+	font-size: 30px;
+}
+
+input {
+		font-size: 30px;
+}
+
+button {
+	font-size: 30px;
+}
+
+form {
+	background-color: #eFe;
+}

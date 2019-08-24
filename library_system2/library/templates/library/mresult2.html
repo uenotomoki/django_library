@@ -1,0 +1,72 @@
+
+{% extends 'library/base.html' %}
+
+
+{% block TITLE_AREA %}
+履歴
+{% endblock %}
+
+{% block BODY_AREA %}
+<h1 class="s60" align="center">履歴一覧</h1>
+<div align="right"><a href="{% url 'mmypage' %}">マイページへ</a></div>
+<div align="right"><a href="{% url 'mlogin' %}">ログアウト</a></div>
+<hr>
+<h2 class="s50" align="center">{{alert}}</h2>
+
+
+<h1 align='center'>履歴検索</h1>
+<center>
+<form action="{% url 'mresult2' 1 %}" method="get">
+
+
+  {{forms.choices}}
+  {{forms.find}}
+<input type="submit" name="" value="検索">
+</center>
+</form>
+<br><br>
+{%if list%}
+<table border="1">
+  <tr>
+    <td>資料名</td>
+    <td>著者名</td>
+    <td>出版社</td>
+    <td>貸出日</td>
+    <td>返却日</td>
+    <td>評価</td>
+  </tr>
+{%for obj in list%}
+<tr>
+  <td>{{obj.doclist.docindex.name}}</td>
+  <td>{{obj.doclist.docindex.author}}</td>
+  <td>{{obj.doclist.docindex.publisher}}</td>
+  <td>{{obj.lend_day}}</td>
+  <td>{{obj.return_day}}</td>
+  <td><form class="s30" action="{% url 'comment' %}" method="post">
+    {% csrf_token %}
+
+  <input type="hidden" name="isbn" value="{{obj.doclist.docindex_id}}">
+  <input type="hidden" name="userid" value="{{obj.member_id}}">
+  <input type="submit" name="" value="評価" class="s30">
+  </form>
+</td>
+</tr>
+
+{%endfor%}
+</table><br>
+{%else%}
+<center>
+  検索した資料を借りていません<br>
+</center>
+  {% endif %}
+<center>
+{% for no in plist %}
+  {% if no == num %}
+    {{ no }}
+  {% else %}
+    <a href="{% url 'mresult2' no %}?choices={{choices}}&find={{find}}">{{ no }}</a>
+  {% endif %}
+  {% endfor %}
+</center>
+
+{% endblock %}

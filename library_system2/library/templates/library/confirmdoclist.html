@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+
+    </script>
+    <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'library/css/style.css' %}">
+    <title>
+      資料情報登録確認
+    </title>
+  </head>
+  <body>
+    <h1 class="s60" align="center">資料情報登録確認</h1>
+        <h4 align='right'>
+          <div align="right"><a href="{% url 'smypage' %}">マイページへ</a></div>
+          <div align="right"><a href="{% url 'slogin' %}">ログアウト</a></div>
+        </h4>
+        <hr><br>
+
+<center>
+    <h1>資料情報登録確認画面</h1>
+<br>
+<br>
+この内容で登録してよろしいでしょうか？<br><br>
+
+<table border="1" align='center'  style='font-size: 30pt;'>
+  {% for field in form %}
+  <tr>
+    <td>{{ field.label }}</td><td>{{ field.value }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<form action="{% url 'registdoclist' %}" method="post" class="center" style="display: inline">
+  {% csrf_token %}
+  {{form.as_hidden}}
+<input type="submit" value="登録" class="s30">
+</form>
+<button onClick="history.go(-1)">戻る</button>
+<br><br>
+
+
+
+</center>
+
+  </body>
+</html>

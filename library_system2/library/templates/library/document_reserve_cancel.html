@@ -1,0 +1,46 @@
+
+{% extends 'library/base.html' %}
+
+
+{% block TITLE_AREA %}
+予約キャンセル確認画面
+{% endblock %}
+
+{% block BODY_AREA %}
+<h1 class="s60" align="center">予約キャンセル確認画面</h1>
+<div align="right"><a href="{% url 'smypage' %}">マイページへ</a></div>
+<div align="right"><a href="{% url 'slogin' %}">ログアウト</a></div>
+<hr>
+<h2 class="s50" align="center">{{alert}}</h2>
+<br>
+<a href="{% url 'document_reserve_top' %}">予約一覧画面へ</a>
+<center>
+  <h2>本当にこの予約をキャンセルしますか？</h2>
+
+</center>
+<table border=1>
+  <tr>
+    <td>予約者</td>
+    <td>{{reserve.member.name}}</td>
+  </tr>
+  <tr>
+    <td>予約資料名</td>
+    <td>{{reserve.docindex.name}}</td>
+  </tr>
+  <tr>
+    <td>予約日</td>
+    <td>{{reserve.reserve_day}}</td>
+  </tr>
+  <tr>
+    <td>備考</td>
+    <td>{{reserve.remarks}}</td>
+  </tr>
+</table>
+<br><br>
+<center>
+  <form class="s40" action="{% url 'document_reserve_cancel_save' reserve.id %}" method="post">
+    {% csrf_token %}
+    <div align="center"><input type="submit" name="" value="予約キャンセル"></div>
+  </form>
+</center>
+{% endblock %}

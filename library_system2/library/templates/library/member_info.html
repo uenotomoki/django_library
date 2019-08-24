@@ -1,0 +1,66 @@
+
+{% extends 'library/base.html' %}
+
+
+{% block TITLE_AREA %}
+会員詳細情報画面
+{% endblock %}
+
+{% block BODY_AREA %}
+<h1 class="s60" align="center">会員詳細情報画面</h1>
+<div align="right"><a href="{% url 'smypage' %}">マイページへ</a></div>
+<div align="right"><a href="{% url 'slogin' %}">ログアウト</a></div>
+<hr>
+<h2 class="s50" align="center">{{alert}}</h2>
+
+{% if member != Null %}
+<h2 class="s40" align="center">{{member}}さんの情報</h2>
+<div class="s30" align="right">
+  <a href="{% url 'member_update' member.id %}">編集</a>
+  <a href="{% url 'member_delete' member.id %}">退会</a>
+</div>
+<table border=1>
+  <tr>
+    <td>会員ID</td>
+    <td>{{member.id}}</td>
+  </tr>
+  <tr>
+    <td>氏名</td>
+    <td>{{member.name}}</td>
+  </tr>
+  <tr>
+    <td>郵便番号</td>
+    <td>{{member.post_number}}</td>
+  </tr>
+  <tr>
+    <td>住所</td>
+    <td>{{member.address}}</td>
+  </tr>
+  <tr>
+    <td>電話番号</td>
+    <td>{{member.tel_number}}</td>
+  </tr>
+  <tr>
+    <td>E-mail</td>
+    <td>{{member.email}}</td>
+  </tr>
+  <tr>
+    <td>誕生日</td>
+    <td>{{member.birthday}}</td>
+  </tr>
+  <tr>
+    <td>入会日</td>
+    <td>{{member.entry_day}}</td>
+  </tr>
+  <tr>
+    <td>パスワード</td>
+    <td>{{member.password}}</td>
+  </tr>
+</table>
+<br>
+
+{% endif %}
+<center>
+<a href="{% url 'member_manage' %}">検索画面へ </a>
+</center>
+{% endblock %}

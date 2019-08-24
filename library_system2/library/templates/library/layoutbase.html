@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+
+    </script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'library/css/style.css' %}">
+    <title>
+      <!-- ここにタイトル -->
+    </title>
+  </head>
+  <body>
+    <h1>ここにタイトル</h1>
+        <h4 align='right'>
+          <div align="right"><a href="{% url 'smypage' %}">マイページへ</a></div>
+          <div align="right"><a href="{% url 'slogin' %}">ログアウト</a></div>
+        </h4>
+        <hr><br>
+
+  </body>
+</html>

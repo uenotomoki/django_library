@@ -1,0 +1,94 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+
+    </script>
+    <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="{% static 'library/css/style.css' %}">
+    <title>
+      資料画面
+    </title>
+  </head>
+  <body>
+    <center>
+    <h1 class="s60" align="center">資料管理画面</h1>
+  </center>
+        <h4 align='right'>
+          <a href="{% url 'smypage' %}">マイページへ</a><br>
+          <a href="{% url 'slogin' %}">ログアウト</a>
+        </h4>
+        <h2 class="s50" align="center">{{alert}}</h2>
+        <hr><br>
+
+
+        <font size="6"><center>
+        <a href="{% url 'registdoclist' %}">新規登録</a>
+
+        <form action="{% url 'doc_listsearch' 1%}" method="get" class="center">
+        {{ form.choices }}{{ form.find }}
+        <input type="submit" value="検索" class="size">
+      </form>
+      <br>
+  {% if objectlist %}
+      <table border="1" align='center'  style='font-size: 15pt;'>
+
+             <td>資料ID</td>
+              <td>ISBN番号</td>
+              <td>入荷日</td>
+              <td>本タイトル</td>
+              <td>分類コード</td>
+              <td>著者</td>
+              <td>出版社</td>
+              <td>出版日</td>
+              <td>詳細</td>
+              <td>編集</td>
+              <td>削除</td>
+              <td>備考</td>
+              {% for item_list in objectlist %}
+            <tr>
+            <td>{{ item_list.id }}</td>
+            <td>{{ item_list.docindex.isbn }}</td>
+            <td>{{ item_list.arrival_day }}</td>
+            <td>{{ item_list.docindex.name }}</td>
+            <td>{{ item_list.docindex.type_code}}</td>
+            <td>{{ item_list.docindex.author }}</td>
+            <td>{{ item_list.docindex.publisher }}</td>
+            <td>{{ item_list.docindex.publication_day }}</td>
+
+
+            <td>
+              <form class="s30" action="{% url 'doc_detail'%}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="isbn" value="{{item_list.docindex.isbn}}">
+                <input type="submit" value="詳細" class="s30">
+              </form>
+            </td>
+            <td><a href="{% url 'edit_doc' item_list.id %}"><input type="submit" value="編集" class="s30"></a></td>
+            <td><a href="{% url 'delete_doc' item_list.id %}"><input type="submit" value="削除" class="s30"></a></td>
+            <td>{{ item_list.remarks }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+        <center>
+          <button onClick="history.go(-1)" class="size">戻る</button>
+        </center>
+        {%else%}
+      検索した資料は存在しません
+        {%endif%}
+        {% for no in plist %}
+          {% if no == num %}
+            {{ no }}
+          {% else %}
+            <a href="{% url 'doc_list' no %}" >{{ no }}</a>
+          {% endif %}
+        {% endfor %}
+        {% block BODY_AREA %}
+        {% endblock %}
+        </center></font>
+
+
+  </body>
+</html>

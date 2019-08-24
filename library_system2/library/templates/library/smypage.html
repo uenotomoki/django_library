@@ -1,0 +1,40 @@
+{% extends 'library/base.html' %}
+
+
+{% block TITLE_AREA %}
+職員マイページ
+{% endblock %}
+{% block BODY_AREA %}
+
+    <h1 align="center">職員マイページ</h1>
+    
+      <div align='right'><a href="{% url 'slogin' %}">ログアウト</a>
+
+    <center>
+    {{user}}{{msg}}<br>
+    {{alert}}
+    </center>
+    <h2 align="center">機能一覧<hr></h2>
+    <h2 align="center">
+    <a href="{% url 'member_manage' %}">会員管理機能</a>
+    </h2>
+    <h2 align="center">
+    <a href="{% url 'doc_list' 1 %}">資料管理機能</a>
+    </h2>
+    <h2 align="center">
+    <a href="{% url 'document_reserve_top' %}">予約機能</a>
+    </h2>
+    <h2 align="center">
+    <a href="{% url 'document_lend' %}">貸出機能</a>
+    </h2>
+    <h2 align="center">
+    <a href="{% url 'document_return' %}">返却機能</a>
+    </h2>
+    <h2 align="center">
+    <a href="{% url 'lend_list' 1 %}">貸出履歴・延滞確認機能</a>
+    </h2>
+
+
+  <br><br><br>
+
+{% endblock %}

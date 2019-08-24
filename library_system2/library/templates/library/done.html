@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+
+    </script>
+    <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="{% static 'library/css/style.css' %}">
+    <title>
+      完了画面
+    </title>
+  </head>
+  <body>
+    <h1 class="s60" align="center">完了画面</h1>
+    <h4 align='right'>
+      <a href="{% url 'smypage' %}">マイページへ</a><br>
+      <a href="{% url 'slogin' %}">ログアウト</a>
+    </h4>
+    <hr><br>
+
+  </h2>
+  <h2 align="center">
+  <a href="{% url 'doc_list' 1 %}">資料管理画面へ</a>
+  </h2>
+
+  </body>
+</html>

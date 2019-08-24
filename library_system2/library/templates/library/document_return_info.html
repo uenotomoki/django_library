@@ -1,0 +1,62 @@
+
+{% extends 'library/base.html' %}
+
+
+{% block TITLE_AREA %}
+返却資料情報画面
+{% endblock %}
+
+{% block BODY_AREA %}
+<h1 class="s60" align="center">返却資料情報</h1>
+<div align="right"><a href="{% url 'smypage' %}">マイページへ</a></div>
+<div align="right"><a href="{% url 'slogin' %}">ログアウト</a></div>
+<hr>
+<h2 class="s50" align="center">{{alert}}</h2>
+
+{% if doc != Null or member != Null %}
+<table border=1>
+  <tr>
+    <td>資料ID</td>
+    <td>{{doc.id}}</td>
+  </tr>
+  <tr>
+    <td>資料名</td>
+    <td>{{docindex.name}}</td>
+  </tr>
+  <tr>
+    <td>貸出日</td>
+    <td>{{lend_day}}</td>
+  </tr>
+  <tr>
+    <td>返却期限</td>
+    <td>{{return_limit}}</td>
+  </tr>
+  <tr>
+    <td>申請者</td>
+    <td>{{member}}</td>
+  </tr>
+</table>
+
+<br>
+<center>
+  <form class="s30" action="{% url 'document_return_save' %}" method="post" style="display:inline-flex">
+    {% csrf_token %}
+    <input type="hidden" name="did" value="{{doc.id}}">
+    <input type="hidden" name="mid" value="{{member.id}}">
+
+
+    <input type="submit" name="" value="返却" class="s30">
+
+  </form>
+
+
+
+　　<a href="{% url 'document_return' %}"><input type="submit" name="" value="戻る" class="s30"></a>
+</center>
+{%else%}
+<center>
+<a href="{% url 'document_return' %}"><input type="submit" name="" value="戻る" class="s30"></a>
+</center>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+
+{% extends 'library/base.html' %}
+
+
+{% block TITLE_AREA %}
+資料貸出画面
+{% endblock %}
+
+{% block BODY_AREA %}
+<h1 class="s60" align="center">資料貸出</h1>
+<div align="right"><a href="{% url 'smypage' %}">マイページへ</a></div>
+<div align="right"><a href="{% url 'slogin' %}">ログアウト</a></div>
+<hr>
+<br><br><br>
+<center>
+  <form class="s50" action="{% url 'document_lend_info' %}" method="post">
+    {% csrf_token %}
+    <table class='color'>
+      {{forms.as_table}}
+    </table>
+
+      　
+      <input type="submit" value="検索" class='s30' align="center">
+
+  </form>
+</center>
+
+
+
+{% endblock %}

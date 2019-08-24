@@ -1,0 +1,50 @@
+{% extends 'library/base.html' %}
+{% block TITLE_AREA %}
+
+{% endblock %}
+
+{% block BODY_AREA %}
+<h1 class="s60" align="center">資料情報登録確認</h1>
+    <h4 align='right'>
+      <div align="right"><a href="{% url 'smypage' %}">マイページへ</a></div>
+      <div align="right"><a href="{% url 'slogin' %}">ログアウト</a></div>
+    </h4>
+    <hr><br>
+
+
+    <!--
+      <a href=""><input type="submit" value="" class="size"></a>　　　
+      <a href=""><input type="submit" value="戻る" class="size"></a> -->
+
+
+<!--  ＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃-->
+<font size="6"><center>
+<h1>資料情報登録確認画面</h1>
+<br>
+<br>
+この内容で登録してよろしいでしょうか？<br><br>
+
+<table border="1" align='center'  style='font-size: 30pt;'>
+{% for field in form %}
+<tr>
+<td>{{ field.label }}</td><td>{{ field.value }}</td>
+</tr>
+{% endfor %}
+</table>
+<form action="{% url 'registdoclist' %}" method="post" class="center" style="display:inline-flex">
+{% csrf_token %}
+{% for field in form %}
+{{ field.as_hidden }}
+{% endfor %}
+
+
+<input type="submit" value="登録" class="s30">
+</form>
+　　<button onClick="history.go(-1)" class="s30">戻る</button>
+
+<br><br>
+
+</center></font>
+
+{% endblock %}
+<!DOCTYPE html>

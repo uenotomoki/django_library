@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+
+    </script>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'library/css/style.css' %}">
+
+    <title>
+      一般会員ログイン
+    </title>
+  </head>
+  <body>
+    <h1>一般会員ログイン</h1>
+  <div align="right"><a href="{% url 'slogin' %}">職員でログインする</a></div>
+    <br><br>
+
+
+    <form  action="{% url 'mlogin' %}" method="post" class="center">
+      {% csrf_token %}
+      ID:<input type="text" name="ID" value="IDを入力" class="size">
+      <br>
+      password:<input type="text" name="password" value="パスワードを入力" class="size">
+      <input type="submit" value="ログイン" class="size">
+
+    </form>
+<br><br>
+
+
+
+  </body>
+</html>

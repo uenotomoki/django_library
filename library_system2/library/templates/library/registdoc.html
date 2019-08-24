@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+
+    </script>
+    <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'library/css/style.css' %}">
+    <title>
+      資料情報登録
+    </title>
+  </head>
+  <body>
+    <h1>資料情報登録</h1>
+
+          <div align="right"><a href="{% url 'smypage' %}">マイページへ</a></div>
+          <div align="right"><a href="{% url 'slogin' %}">ログアウト</a></div>
+
+        <hr><br>
+  </head>
+  <body>
+    <font size="6"><center>
+    <h1>資料情報登録画面</h1>
+
+<br><br><br>
+isbn:{{ isbn }}
+<form action="{% url 'confirmation' %}" method="post" class="center">
+  {% csrf_token %}
+  <table class="color">
+    {{ form.as_table }}
+  </table>
+      <input type="submit" value="登録情報" class="size">
+      <br><br>
+</form>
+</center></font>
+
+  </body>
+</html>

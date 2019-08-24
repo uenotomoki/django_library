@@ -1,0 +1,45 @@
+
+{% extends 'library/base.html' %}
+
+
+{% block TITLE_AREA %}
+資料返却
+{% endblock %}
+
+{% block BODY_AREA %}
+<h1 class="s60" align="center">資料返却</h1>
+<div align="right"><a href="{% url 'mmypage' %}">マイページへ</a></div>
+<div align="right"><a href="{% url 'mlogin' %}">ログアウト</a></div>
+<hr>
+<h2 class="s50" align="center">{{alert}}</h2>
+
+<br><br><br>
+{%if list%}
+<table border="1">
+  <tr>
+    <td>資料名</td>
+    <td>出版社</td>
+    <td>貸出日</td>
+    <td>返却期限</td>
+    <td>返却</td>
+  </tr>
+{%for obj in list%}
+<tr>
+  <td>{{obj.doclist.docindex.name}}</td>
+  <td>{{obj.doclist.docindex.publisher}}</td>
+  <td>{{obj.lend_day}}</td>
+  <td>{{obj.return_limit}}</td>
+  <td><form class="s30" action="{% url 'mreturn' %}" method="post">
+    {% csrf_token %}
+
+  <input type="hidden" name="did" value="{{obj.doclist_id}}">
+
+  <input type="submit" name="" value="返却" class="s30">
+  </form>
+</td>
+</tr>
+
+{%endfor%}
+</table>
+{%endif%}
+{% endblock %}

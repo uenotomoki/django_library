@@ -1,0 +1,60 @@
+
+{% extends 'library/base.html' %}
+
+
+{% block TITLE_AREA %}
+貸出資料情報画面
+{% endblock %}
+
+{% block BODY_AREA %}
+<h1 class="s60" align="center">貸出資料情報</h1>
+<div align="right"><a href="mmypage">マイページへ</a></div>
+<div align="right"><a href="mlogin">ログアウト</a></div>
+<hr>
+<h2 class="s50" align="center">{{alert}}</h2>
+
+{% if doc != Null or member != Null %}
+<table border=1>
+  <tr>
+    <td>資料ID</td>
+    <td>{{doc.id}}</td>
+  </tr>
+  <tr>
+    <td>資料名</td>
+    <td>{{docindex.name}}</td>
+  </tr>
+  <tr>
+    <td>貸出日</td>
+    <td>{{today}}</td>
+  </tr>
+  <tr>
+    <td>返却期限</td>
+    <td>{{return_limit}}</td>
+  </tr>
+  <tr>
+    <td>申請者</td>
+    <td>{{member}}</td>
+  </tr>
+</table>
+<center>
+  <div style="display:inline-flex">
+  <form class="s30" action="mlendsave" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="did" value="{{doc.id}}">
+
+    <input type='hidden' name="remarks" rows="2" cols="20" maxlength="300">
+
+    <input type="submit" name="" value="貸出" class="s30">
+
+  </form>
+  </div>
+
+</center>
+{% endif %}
+<br>
+<center>
+
+　　<a href="{% url 'mlend' %}">貸出資料検索画面へ </a>
+</center>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+
+    </script>
+    <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'library/css/style.css' %}">
+    <title>
+      資料編集確認画面
+    </title>
+  </head>
+  <body>
+    <h1 align='center'>資料編集確認画面</h1>
+        <h4 align='right'>
+          <div align="right"><a href="{% url 'smypage' %}">マイページへ</a></div>
+          <div align="right"><a href="{% url 'slogin' %}">ログアウト</a></div>
+        </h4>
+        <hr><br>
+<!--  ＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃-->
+    <font size="6">
+      <center>
+        {{message}}
+
+        <table border="1" align='center'  style='font-size: 20pt;'>
+          <tr>
+            <td>isbn番号</td>
+            <td>{{isbn}}</td>
+          </tr>
+          <tr>
+            <td>資料名</td>
+            <td>{{name}}</td>
+          </tr>
+          <tr>
+            <td>分類コード</td>
+            <td>{{type_code}}</td>
+          </tr>
+          <tr>
+            <td>著者名</td>
+            <td>{{author}}</td>
+          </tr>
+          <tr>
+            <td>出版社</td>
+            <td>{{publisher}}</td>
+          </tr>
+          <tr>
+            <td>出版日</td>
+            <td>{{publication_day}}</td>
+          </tr>
+          </table>
+          <form action="{% url 'edit_doc_save'%}" method="post" class="center" style="display: inline">
+            {% csrf_token %}
+
+
+          <input type="hidden" name='isbn' value="{{isbn}}">
+          <input type="hidden" name='name' value="{{name}}">
+          <input type="hidden" name='type_code' value="{{type_code}}">
+          <input type="hidden" name='author' value="{{author}}">
+          <input type="hidden" name='publisher' value="{{publisher}}">
+          <input type="hidden" name='publication_day' value="{{publication_day}}">
+          <input type="submit" value="確認" class="size">
+          </form>
+
+
+
+
+
+
+          <button onClick="history.go(-1)">戻る</button>
+</center></font>
+
+<!--  ＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃-->
+  </body>
+</html>

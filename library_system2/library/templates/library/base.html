@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+      {% block SCRIPT_AREA %}{% endblock %}
+    </script>
+    <meta charset="UTF-8">
+
+    <title>{% block TITLE_AREA %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'library/css/style.css' %}">
+
+  </head>
+  <body>
+    {% block BODY_AREA %}
+    {% endblock %}
+  </body>
+</html>

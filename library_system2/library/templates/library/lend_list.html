@@ -1,0 +1,78 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+
+    </script>
+    <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'library/css/style.css' %}">
+    <title>
+      貸出履歴
+    </title>
+  </head>
+  <body>
+    <center>
+    <h1 class="s60" align="center">貸出履歴</h1>
+    </center>
+        <h4 align='right'>
+          <div align="right"><a href="{% url 'smypage' %}">マイページへ</a></div>
+          <div align="right"><a href="{% url 'slogin' %}">ログアウト</a></div>
+        </h4>
+        <hr><br>
+
+        <font size="6"><center>
+
+          <form action="{% url 'lend_list' 1 %}" method="post" class="center">
+            {% csrf_token %}
+            <input type="submit" value="延滞者確認" class="size">
+          </form>
+          <br>
+{% if data %}
+      <table border="1" align='center'  style='font-size: 20pt;'>
+        <tr>
+        <td>借りた日</td>
+        <td>返却期限</td>
+        <td>会員ID</td>
+        <td>会員名</td>
+        <td>資料ID</td>
+        <td>資料名</td>
+        <td>資料備考</td>
+
+        {% if check %}<td>30日以上延滞</td>{% endif %}
+      </tr>
+
+          {% for item in data %}
+            <tr>
+            <td>{{ item.lend_day }}</td>
+            <td>{{ item.return_limit }}</td>
+            <td>{{ item.member.id }}</td>
+            <td>{{ item.member.name }}</td>
+            <td>{{ item.doclist.id }}</td>
+            <td>{{ item.doclist.docindex.name }}</td>
+            <td>{{ item.remarks }}</td>
+            {% if check %}<td>{{ item.overthiity }}</td>{% endif %}
+          </tr>
+        {% endfor %}
+        </table>
+        {%else%}
+        現在貸出中の資料は存在しません
+        {%endif%}
+        <br><br>
+        <button onClick="history.go(-1)" class="size">戻る</button>
+        <br>
+          {% for no in plist %}
+            {% if no == num %}
+              {{ no }}
+            {% else %}
+              <a href="{% url 'lend_list' no %}" >{{ no }}</a>
+            {% endif %}
+          {% endfor %}
+          {% block BODY_AREA %}
+          {% endblock %}
+
+        </center></font>
+
+  </body>
+</html>

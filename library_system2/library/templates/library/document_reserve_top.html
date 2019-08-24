@@ -1,0 +1,41 @@
+
+{% extends 'library/base.html' %}
+
+
+{% block TITLE_AREA %}
+予約機能トップ画面
+{% endblock %}
+
+{% block BODY_AREA %}
+<h1 class="s60" align="center">予約機能トップ画面</h1>
+<div align="right"><a href="{% url 'smypage' %}">マイページへ</a></div>
+<div align="right"><a href="{% url 'slogin' %}">ログアウト</a></div>
+<hr>
+<h2 class="s50" align="center">{{alert}}</h2>
+
+<center>
+  <h2><a href="{% url 'document_reserve' %}">新規予約</a></h2>
+
+</center>
+<table border=1>
+  <tr>
+    <th>予約ID</th><th>予約者</th><th>予約資料名</th>
+    <th>予約年月日</th><th>確保済み資料ID</th><th>備考</th><th>キャンセル</th>
+  </tr>
+  {% for reserve in reserves %}
+  <tr>
+    <td>{{reserve.id}}</td>
+    <td>{{reserve.member.name}}</td>
+    <td>{{reserve.docindex.name}}</td>
+    <td>{{reserve.reserve_day}}</td>
+    <td>{{reserve.doclist.id}}</td>
+    <td>{{reserve.remarks}}</td>
+    <td><a href="{% url 'document_reserve_cancel' reserve.id %}">キャンセル</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+<br>
+
+
+{% endblock %}

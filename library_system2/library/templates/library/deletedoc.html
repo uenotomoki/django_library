@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+
+    </script>
+    <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'library/css/style.css' %}">
+    <title>
+      資料廃棄
+    </title>
+  </head>
+  <body>
+    <h1 class="s60" align="center">資料廃棄</h1>
+        <h4 align='right'>
+          <div align="right"><a href="{% url 'smypage' %}">マイページへ</a></div>
+          <div align="right"><a href="{% url 'slogin' %}">ログアウト</a></div>
+        </h4>
+        <hr><br>
+<!--  ＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃-->
+        <font size="6"><center>
+          この資料を廃棄しますか
+
+        <table border="1" align='center'  style='font-size: 30pt;'>
+          <tr>
+            <td>資料ID</td>
+             <td>ISBN番号</td>
+             <td>出荷日</td>
+             <td>備考</td>
+             <td>本タイトル</td>
+             <td>分類コード</td>
+             <td>著者</td>
+             <td>出版社</td>
+             <td>出版日</td>
+          </tr>
+          <tr>
+            <td>{{ form.id }}</td>
+            <td>{{ form.docindex.isbn }}</td>
+            <td>{{ form.arrival_day }}</td>
+            <td>{{ form.remarks }}</td>
+            <td>{{ form.docindex.name }}</td>
+            <td>{{ form.docindex.get_type_code_display }}</td>
+            <!-- get_BUNRUI_CHOIC_display  -->
+            <td>{{ form.docindex.author }}</td>
+            <td>{{ form.docindex.publisher }}</td>
+            <td>{{ form.docindex.publication_day }}</td>
+          </tr>
+        </table>
+
+        <form action="{% url 'delete_doc' form.id %}" method="post" class="center" style="display:inline-flex">
+          {% csrf_token %}
+          {{ form.as_hidden }}
+        <input type="submit" value="廃棄" class="s30">
+        </form>
+
+          <button onClick="history.go(-1)">戻る</button>
+</center></font>
+
+<!--  ＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃-->
+  </body>
+</html>

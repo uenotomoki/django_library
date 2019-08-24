@@ -1,0 +1,64 @@
+
+{% extends 'library/base.html' %}
+
+
+{% block TITLE_AREA %}
+予約資料情報画面
+{% endblock %}
+
+{% block BODY_AREA %}
+<h1 class="s60" align="center">予約資料情報</h1>
+<div align="right"><a href="{% url 'smypage' %}">マイページへ</a></div>
+<div align="right"><a href="{% url 'slogin' %}">ログアウト</a></div>
+<hr>
+<h2 class="s50" align="center">{{alert}}</h2>
+
+{% if doc != Null or member != Null %}
+<center>
+    <h2>この内容で予約しますか</h2>
+</center>
+<table border=1>
+  <tr>
+  <td>予約者</td>
+  <td>{{member.name}}</td>
+  </tr>
+  <tr>
+    <td>資料名</td>
+    <td>{{docindex.name}}</td>
+  </tr>
+  <tr>
+    <td>著者名</td>
+    <td>{{docindex.author}}</td>
+  </tr>
+  <tr>
+    <td>出版社</td>
+    <td>{{docindex.publisher}}</td>
+  </tr>
+  <tr>
+    <td>出版日</td>
+    <td>{{docindex.publication_day}}</td>
+  </tr>
+
+</table>
+<center>
+  <div style="display:inline-flex">
+  <form class="s30" action="{% url 'document_reserve_save' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="isbn" value="{{docindex.isbn}}">
+    <input type="hidden" name="mid" value="{{member.id}}">
+    <br>
+    備考：
+    <textarea name="remarks" rows="2" cols="20" maxlength="300"></textarea>
+    　　<input type="submit" name="" value="登録" class="s30">
+  </form>
+  </div>
+
+</center>
+{% endif %}
+<br>
+<center>
+
+　　<a href="{% url 'document_reserve' %}">返却資料検索画面へ </a>
+</center>
+
+{% endblock %}

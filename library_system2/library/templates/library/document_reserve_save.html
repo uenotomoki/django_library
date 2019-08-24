@@ -1,0 +1,19 @@
+
+{% extends 'library/base.html' %}
+
+
+{% block TITLE_AREA %}
+予約完了画面
+{% endblock %}
+
+{% block BODY_AREA %}
+<h1 class="s60" align="center">予約完了</h1>
+<div align="right"><a href="{% url 'smypage' %}">マイページへ</a></div>
+<div align="right"><a href="{% url 'slogin' %}">ログアウト</a></div>
+<hr>
+<h2 class="s50" align="center">{{alert}}</h2>
+
+<center>
+<a href="{% url 'document_reserve' %}">予約資料検索画面へ</a>
+</center>
+{% endblock %}

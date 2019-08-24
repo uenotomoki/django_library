@@ -1,0 +1,43 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+
+    </script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'library/css/style.css' %}">
+
+    <title>
+      資料
+    </title>
+  </head>
+  <body>
+    <h1>資料画面</h1>
+    <br>
+
+      <div align="right"><a href="{% url 'smypage' %}">マイページへ</a></div>
+      <div align="right"><a href="{% url 'slogin' %}">ログアウト</a></div>
+
+    <br><br>
+
+<br><br><br>
+
+{{ object_list }}
+
+<form action="" method="post" class="center">
+    {{ form }}
+      <input type="submit" value="編集" class="size">
+      <br><br>
+</form>
+
+<form action="" method="post" class="center">
+    {{ form }}
+      <input type="submit" value="削除" class="size">
+      <br><br>
+</form>
+
+
+  </body>
+</html>

@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+      {% block SCRIPT_AREA %}{% endblock %}
+    </script>
+    <meta charset="UTF-8">
+
+    <title>{% block TITLE_AREA %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'library/css/style.css' %}">
+
+  </head>
+  <body>
+    {% block BODY_AREA %}
+    <h1 class="s60" align="center">資料情報詳細</h1>
+    <div align="right"><a href="mmypage">マイページへ</a></div>
+    <div align="right"><a href="mlogin">ログアウト</a></div>
+    <hr>
+    <h2 class="s50" align="center">{{alert}}</h2>
+
+    <table border="1" class='s30'>
+
+    <tr>
+      <td>資料名</td>
+      <td>{{index.name}}</td>
+    </tr>
+    <tr>
+      <td>分類コード</td>
+      <td>{{index.type_code}}</td>
+    </tr>
+    <tr>
+      <td>著者名</td>
+      <td>{{index.author}}</td>
+    </tr>
+    <tr>
+      <td>出版社</td>
+      <td>{{index.publisher}}</td>
+    </tr>
+    <tr>
+      <td>出版日</td>
+      <td>{{index.publication_day}}</td>
+    </tr>
+    <tr>
+      <td>資料ID</td>
+      <td>
+
+        {% for i in list %}
+          {{i.id}},
+        {% endfor%}
+      </td>
+    </tr>
+    </table>
+
+    <h4 align='center'>コメント・評価</h4>
+<center>
+<textarea readonly cols="100" rows="10">
+{% for i in comment %}
+----------------------------------------------------------------------------------------------
+
+評価　　：{{i.evaluation}}
+
+コメント：
+{{i.comment}}
+
+
+
+{% endfor%}
+
+</textarea>
+</center>
+<br>
+    <center>
+      <button onClick="history.go(-1)" class="size">戻る</button>
+    </center><br>
+    {% endblock %}
+  </body>
+</html>
